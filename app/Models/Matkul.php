@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Materi;
+use App\Traits\TimeUTC8;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Matkul extends Model
 {
-    use HasFactory;
+    use HasFactory, TimeUTC8;
 
     protected $fillable = ['kd_matkul','nm_matkul','sks'];
     // protected $with = ['materis'];

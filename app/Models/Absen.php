@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\TimeUTC8;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Absen extends Model
 {
-    use HasFactory;
+    use HasFactory, TimeUTC8;
 
     protected $fillable = [ 'parent','mahasiswa_id', 'status', 'pertemuan', 'rangkuman', 'berita_acara', 'jadwal_id'];
     // protected $with = ['jadwal'];

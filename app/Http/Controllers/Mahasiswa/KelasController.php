@@ -12,7 +12,9 @@ class KelasController extends Controller
 {
     public function waktuSekarang()
     {
-        return Carbon::now('Asia/Jakarta')->format('H:i');
+        $jakartaTime = Carbon::now('Asia/Jakarta');
+        $utcPlus8Time = $jakartaTime->copy()->addHour();
+        return $utcPlus8Time->format('Y-m-d H:i');
     }
 
     public function masuk($id)
@@ -36,7 +38,7 @@ class KelasController extends Controller
             ]);
 
         $absens = Auth::user()->absens()->where('jadwal_id', $jadwal_id)->paginate(5);
-        
+        // return $absens;
         $test = collect([
             ['jadwal_id' => 2, 'nama' => 'fadlie'],
             ['jadwal_id' => 3, 'nama' => 'udin']
@@ -52,30 +54,52 @@ class KelasController extends Controller
         }
 
         $allowMhsAbsen = Absen::where('jadwal_id', $jadwal_id)->where('parent', 0)->whereDate('created_at', now())->first();
+        // return $allowMhsAbsen;
         // $isAbsen = Auth::user()->isAbsen($jadwal_id)->first();
         return view('frontend.mahasiswa.kelas.masuk', compact('jadwal', 'absens', 'waktuAbsen', 'allowMhsAbsen', 'isAbsen'));
     }
 
     public function absen()
     {
+        if (request()->has('absen')) {
+            $statusAbsen = request('absen');
+        } elseif (request()->has('sakit')) {
+            $statusAbsen = request('sakit');
+        } elseif (request()->has('izin')) {
+            $statusAbsen = request('izin');
+        }
         $jadwal_id = decrypt(request('jadwal'));
+        $jadwal = Jadwal::where('id', $jadwal_id)->first();
         $absen = Absen::where('jadwal_id', $jadwal_id)->where('parent', 0)->latest()->first();
-        $isAbsen = Auth::user()->isAbsen($jadwal_id)->first();
-
-
+        $isAbsen = Auth::user()->load([
+            'mahasiswaAbsenHariIni' => function ($q) use ($jadwal) {
+                $q->where('jadwal_id', $jadwal->id);
+            },
+            'mahasiswaAbsenHariIniIzin' => function ($q) use ($jadwal) {
+                $q->where('jadwal_id', $jadwal->id);
+            },
+            'mahasiswaAbsenHariIniSakit' => function ($q) use ($jadwal) {
+                $q->where('jadwal_id', $jadwal->id);
+            },
+            'mahasiswaAbsenHariIniTidakHadir' => function ($q) use ($jadwal) {
+                $q->where('jadwal_id', $jadwal->id);
+            }
+        ]);
+        
         //Jika Mahasiswa yang login sudah absen pada waktu yang ditentukan jangan kasih absen lagi
-        if (!$isAbsen) {
-            //Jika belum izinkan absen
+        if ($isAbsen->mahasiswaAbsenHariIni == null && $isAbsen->mahasiswaAbsenHariIniIzin == null && $isAbsen->mahasiswaAbsenHariIniSakit == null) {
+            // Jika belum izinkan absen
             Absen::updateOrCreate([
-                'mahasiswa_id' => Auth::Id(),
+                'mahasiswa_id' => Auth::id(),
                 'parent' => $absen->id
             ], [
                 'jadwal_id' => $jadwal_id,
                 'pertemuan' => $absen->pertemuan,
                 'parent' => $absen->id,
-                'status' => true,
+                'status' => $statusAbsen,
+                'updated_at' => waktuSekarang()
             ]);
-        }
+        }        
 
         return back();
     }

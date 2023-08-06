@@ -34,8 +34,23 @@
                     <hr>
                       <h5>{{ auth()->user()->matkuls->find($kls->pivot->matkul_id)->nm_matkul ?? '' }}</h5>
                     <hr>
-                      <a href="{{ route('laporan.absensi.export_excel', [$kls->id, $kls->pivot->matkul_id ?? '-']) }}" class="btn btn-success btn-md mb-3"><i class="fas fa-file-excel"></i> Export Excel</a>
-                    <div class="table-responsive">
+                      <a href="{{ route('laporan.absensi.export_excel', [$kls->id, $kls->pivot->matkul_id ?? '-']) }}" class="btn btn-success btn-md mb-3"><i class="fas fa-file-excel"></i> Export Excel</a><br>
+
+                      <div class="row">
+                        <div class="col-2">
+                          <code>
+                            ✓ : Hadir <br>
+                            A : Alpa/Tidak Hadir
+                          </code>
+                        </div>
+                        <div class="col-2">
+                          <code>
+                            I : Izin <br>
+                            S : Sakit
+                          </code>
+                        </div>
+                      </div>
+                      <div class="table-responsive">
                       <table border="0px" class="table">
                           <thead>
                               <tr>
@@ -62,7 +77,8 @@
                                           <td style="background:{{ $key % 2 == 0 ? '#6FB2D2' : '' }}; text-align: center; font-size: 18px; font-weight: bold; border: 1px solid; border-color: #3A5BA0">
                                             @foreach($mhs->absens as $absen)
                                                 @if ($absen->pertemuan == $i && $kls->pivot->matkul_id == $absen->jadwal->matkul_id)
-                                                {{ $absen->status ? '✓' : '-' }}
+                                                {{-- {{ $absen->status ? '✓' : '-' }} --}}
+                                                {{ $absen->status == '1' ? '✓' : ($absen->status == '2' ? 'I' : ($absen->status == '3' ? 'S' : 'A')) }}
                                                 @endif
                                             @endforeach
                                           </td>

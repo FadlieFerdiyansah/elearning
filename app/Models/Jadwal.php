@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\TimeUTC8;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Jadwal extends Model
 {
-    use HasFactory;
+    use HasFactory, TimeUTC8;
     protected $fillable = ['kelas_id','dosen_id','matkul_id','hari','jam_masuk','jam_keluar'];
     public $timestamps = false;
 

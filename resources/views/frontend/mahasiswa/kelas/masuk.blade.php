@@ -31,16 +31,32 @@
                     </div>
                 </div>
                 @if ($waktuAbsen && $allowMhsAbsen)
-                <div class="pricing-cta bg-primary">
+                <div class="pricing-cta p-2">
+                    @if ($isAbsen->mahasiswaAbsenHariIni == null && $isAbsen->mahasiswaAbsenHariIniIzin == null && $isAbsen->mahasiswaAbsenHariIniSakit == null)
                     <form action="{{ route('absen') }}" method="post">
                         @csrf
                         <input type="hidden" name="jadwal" value="{{ encrypt($jadwal->id) }}">
-                        <button class="btn btn-primary form-control">{{ $isAbsen ? 'Sudah Absen' : 'Absen' }} <i class="fas fa-arrow-right"></i></button>
+                        {{-- <button class="btn btn-primary form-control">{{ $isAbsen ? 'Sudah Absen' : 'Absen' }} <i class="fas fa-arrow-right"></i></button> --}}
+                        <div class="row">
+                            <div class="col-4">
+                                <button class="btn btn-primary form-control text-uppercase" name="absen" value="1">Absen <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-warning form-control text-uppercase" name="izin" value="2">Izin <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-dark form-control text-uppercase" name="sakit" value="3">Sakit <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
                     </form>
+                    @else
+                        <button class="btn btn-success form-control text-uppercase" disabled>Sudah Melakukan Absensi</i></button>
+                    @endif
+
                 </div>
                 @else
                 <div class="pricing-cta bg-primary">
-                    <button class="btn btn-primary form-control disabled">Absen <i
+                    <button class="btn btn-primary form-control disabled">Absensi belum dibuka <i
                             class="fas fa-arrow-right"></i></button>
                 </div>
                 @endif
@@ -89,8 +105,11 @@
                                     @forelse ($absens as $i => $absen)
                                     <tr>
                                         <th scope="row">{{ $absens->firstItem() + $i }}</th>
-                                        <td><span
-                                                class="badge badge-{{ $absen->status == 1 ? 'success' : 'danger' }}">{{ $absen->status == 1 ? 'Hadir' : 'Tidak Hadir' }}</span>
+                                        <td>
+                                            <span class="badge badge-{{ $absen->status == 1 ? 'success' : ($absen->status == 2 ? 'warning' : ($absen->status == 3 ? 'dark' : 'danger')) }}">
+                                                {{ $absen->status == 1 ? 'Absen' : ($absen->status == 2 ? 'Izin' : ($absen->status == 3 ? 'Sakit' : 'Tidak Hadir')) }}
+                                            </span>
+                                            
                                         </td>
                                         <td>{{ $jadwal->matkul->nm_matkul }}</td>
                                         <td>{{ $absen->pertemuan }}</td>

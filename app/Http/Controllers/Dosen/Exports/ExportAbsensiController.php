@@ -21,8 +21,8 @@ class ExportAbsensiController extends Controller
             $query->whereIn('parent', Auth::user()->absens->pluck('id'))->select('id','mahasiswa_id','pertemuan', 'status');
         }, 'kelas'])->where('kelas_id', $kelas->id)->get(['id', 'kelas_id', 'nim', 'nama']);
 
-        $lastPertemuan = Auth::user()->tugas->where('matkul_id', $matkul->id)->load('matkul')->max('pertemuan');
-
+        // $lastPertemuan = Auth::user()->tugas->where('matkul_id', $matkul->id)->load('matkul')->max('pertemuan');
+        $lastPertemuan = $kelas->jadwals()->where('dosen_id', Auth::id())->first()->absens->where('parent', 0)->max('pertemuan');
         foreach($mahasiswa as $i => $mhs){
             $formatMhs[$i] = [
                 'kelas' => $mhs->kelas->kd_kelas,
@@ -33,7 +33,9 @@ class ExportAbsensiController extends Controller
             for($j = 1; $j <= $lastPertemuan; $j++){
                 $formatMhs[$i]["p$j"] = '-';
                 if($mhs->absens->where('pertemuan', $j)->count() > 0){
-                    $formatMhs[$i]["p$j"] = $mhs->absens->where('pertemuan', $j)->first()->status ? 'v' : '-';
+                    $absen = $mhs->absens->where('pertemuan', $j)->first();
+                    $formatMhs[$i]["p$j"] = $absen->status == '1' ? 'v' : ($absen->status == '2' ? 'I' : ($absen->status == '3' ? 'S' : 'A'));
+                    // $absen->status == '1' ? 'v' : ($absen->status == '2' ? 'I' : ($absen->status == '3' ? 'S' : 'A'))
                 }
             }
         }

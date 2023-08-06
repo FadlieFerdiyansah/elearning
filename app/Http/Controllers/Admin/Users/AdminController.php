@@ -103,6 +103,7 @@ class AdminController extends Controller
     //Delete 1 per 1 data
     public function destroy(Admin $admin)
     {
+        return request()->all();
         $admin->delete();
         Storage::delete($admin->foto);
         return back();

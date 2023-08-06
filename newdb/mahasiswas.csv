@@ -1,0 +1,2 @@
+id,fakultas_id,kelas_id,nim,nama,email,password,foto,remember_token,created_at,updated_at
+1,1,2,17200812,Fadlie Ferdiyansah,mahasiswa@gmail.com,$2y$10$uhfBNN5m3TzHLUO6stZzjeKQf4GgVRa/RC8BjNusXmIMcqUOEx9nq,default.png,,2023-08-07 00:30:35,2023-08-07 00:30:35

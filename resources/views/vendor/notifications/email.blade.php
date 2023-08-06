@@ -38,13 +38,13 @@
 
 <body>
     <p class="greeting">{{ $greeting }}</p>
-    <p>Kamu meminta untuk melakukan riset password</p>
-    <p><b>Jika benar </b>itu <b>kamu</b> yang melakukan Permintaan riset password</p>
-    <p>Silahkan klik button dibawah ini untuk melakukan riset password, Jika itu bukan kamu, bisa kamu <b>Abaikan</b>
+    <p>Kamu meminta untuk melakukan reset password</p>
+    <p><b>Jika benar </b>itu <b>kamu</b> yang melakukan Permintaan reset password</p>
+    <p>Silahkan klik button dibawah ini untuk melakukan reset password, Jika itu bukan kamu, bisa kamu <b>Abaikan</b>
     </p>
     <p>
         <a href="{{ $actionUrl }}" class="link">
-            Riset Password
+            Reset Password
         </a>
     </p>
     <br><br>
@@ -58,10 +58,10 @@
 
     <br>
     <hr>
-    <p><b>Github</b> : <a href="https://github.com/KaSetya02">github.com/KaSetya02</a> <br>
-        <b>Email</b> : <a href="mailto:arimuhamadsetiawan@gmail.com">arimuhamadsetiawan6@gmail.com</a> <br>
-        <b>Donasi BRI</b> : <a href="">3468 0103 2118 535</a></p>
+    <p><b>Github</b> : <a href="https://github.com/FadlieFerdiyansah">https://github.com/FadlieFerdiyansah</a> <br>
+        <b>Email</b> : <a href="mailto:fadlieferdiyansah26@gmail.com">fadlieferdiyansah26@gmail.com</a> <br>
     <hr>
+    </p>
 </body>
 
 </html>

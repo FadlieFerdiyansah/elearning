@@ -41,7 +41,7 @@
                             <div class="form-group row mb-0">
                                 <div class="d-flex col-md-12 offset-md-4">
                                     <button type="submit" class="btn btn-primary mr-2">
-                                        Kirim Link Password Riset
+                                        Kirim Link Password Reset
                                     </button>
                                     <a href="{{ route('login') }}" class="btn btn-light">
                                         Kembali ke Login

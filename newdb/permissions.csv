@@ -1,0 +1,6 @@
+id,name,guard_name,created_at,updated_at
+1,jadwal kuliah,mahasiswa,2023-08-07 00:30:35,2023-08-07 00:30:35
+2,jadwal mengajar,dosen,2023-08-07 00:30:35,2023-08-07 00:30:35
+3,management nilai,dosen,2023-08-07 00:30:35,2023-08-07 00:30:35
+4,management materi,dosen,2023-08-07 00:30:35,2023-08-07 00:30:35
+5,management absen,dosen,2023-08-07 00:30:35,2023-08-07 00:30:35
