@@ -14,7 +14,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Judul</th>
                         <th>Pertemuan</th>
                         <th>Deskripsi</th>

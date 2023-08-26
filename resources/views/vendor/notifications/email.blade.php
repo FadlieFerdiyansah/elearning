@@ -31,16 +31,15 @@
             margin-top: 15px !important;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
-        rel="stylesheet">
-    <title>Permintaan Riset Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <title>Permintaan Reset Password</title>
 </head>
 
 <body>
     <p class="greeting">{{ $greeting }}</p>
     <p>Kamu meminta untuk melakukan reset password</p>
     <p><b>Jika benar </b>itu <b>kamu</b> yang melakukan Permintaan reset password</p>
-    <p>Silahkan klik button dibawah ini untuk melakukan reset password, Jika itu bukan kamu, bisa kamu <b>Abaikan</b>
+    <p>Silahkan klik button di bawah ini untuk melakukan reset password. Jika itu bukan kamu, bisa kamu <b>Abaikan</b>
     </p>
     <p>
         <a href="{{ $actionUrl }}" class="link">
@@ -49,19 +48,13 @@
     </p>
     <br><br>
 
-    <code>Note : Jika tombol diatas tidak berfungsi kamu bisa langsung klik link dibawah</code>
+    <code>Note : Jika tombol di atas tidak berfungsi kamu bisa langsung klik link di bawah</code>
     <p>
         <a href="{{ $actionUrl }}">
             {{ $actionUrl }}
         </a>
     </p>
 
-    <br>
-    <hr>
-    <p><b>Github</b> : <a href="https://github.com/FadlieFerdiyansah">https://github.com/FadlieFerdiyansah</a> <br>
-        <b>Email</b> : <a href="mailto:fadlieferdiyansah26@gmail.com">fadlieferdiyansah26@gmail.com</a> <br>
-    <hr>
-    </p>
 </body>
 
 </html>

@@ -26,7 +26,13 @@ function hariIndo()
 
 function waktuSekarang()
 {
-    $jakartaTime = Carbon::now('Asia/Jakarta');
-    $utcPlus8Time = $jakartaTime->copy()->addHour();
+    $manadoTime = Carbon::now('Asia/Jakarta');
+    $utcPlus8Time = $manadoTime->copy()->addHour();
     return $utcPlus8Time->format('Y-m-d H:i');
+}
+
+function formatedWaktuSekarang()
+{
+    $time = Carbon::createFromFormat('Y-m-d H:i', waktuSekarang());
+    return $time->format('H:i');
 }

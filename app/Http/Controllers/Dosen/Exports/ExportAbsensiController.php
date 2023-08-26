@@ -30,16 +30,40 @@ class ExportAbsensiController extends Controller
                 'nama' => $mhs->nama,
                 'matkul' => Str::lower($matkul->nm_matkul),
             ];
+            $totalHadir = 0;
+            $totalTidakHadir = 0;
+            $totalIzin = 0;
+            $totalSakit = 0;
             for($j = 1; $j <= $lastPertemuan; $j++){
                 $formatMhs[$i]["p$j"] = '-';
                 if($mhs->absens->where('pertemuan', $j)->count() > 0){
                     $absen = $mhs->absens->where('pertemuan', $j)->first();
-                    $formatMhs[$i]["p$j"] = $absen->status == '1' ? 'v' : ($absen->status == '2' ? 'I' : ($absen->status == '3' ? 'S' : 'A'));
+                    // $formatMhs[$i]["p$j"] = $absen->status == '1' ? 'v' : ($absen->status == '2' ? 'I' : ($absen->status == '3' ? 'S' : 'A'));
                     // $absen->status == '1' ? 'v' : ($absen->status == '2' ? 'I' : ($absen->status == '3' ? 'S' : 'A'))
+
+                    if ($absen->status == '1') {
+                        $formatMhs[$i]["p$j"] = '.';
+                        $totalHadir += 1;
+                    } elseif ($absen->status == '2') {
+                        $formatMhs[$i]["p$j"] = 'I';
+                        $totalIzin += 1;
+                    } elseif ($absen->status == '3') {
+                        $formatMhs[$i]["p$j"] = 'S';
+                        $totalSakit += 1;
+                    } else {
+                        $formatMhs[$i]["p$j"] = 'A';
+                        $totalTidakHadir += 1;
+                    }
+
+                    $formatMhs[$i]["hadir"] = $totalHadir;
+                    $formatMhs[$i]["tidak_hadir"] = $totalTidakHadir;
+                    $formatMhs[$i]["izin"] = $totalIzin;
+                    $formatMhs[$i]["sakit"] = $totalSakit;
                 }
             }
         }
-
-        return Excel::download(new Absensi(collect($formatMhs)), "Laporan_Absensi_Kelas_{$formatMhs[0]['kelas']}.xlsx");
+            
+        return Excel::download(new Absensi($formatMhs), "Laporan_Absensi_Kelas_{$formatMhs[0]['kelas']}.xlsx");
+        // return Excel::download(new Absensi(collect($formatMhs)), "Laporan_Absensi_Kelas_{$formatMhs[0]['kelas']}.xlsx");
     }
 }

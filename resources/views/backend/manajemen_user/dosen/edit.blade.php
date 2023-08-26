@@ -34,7 +34,10 @@
                         alt="foto" style="width:100px;" class="mb-3 rounded">
                     <input type="file" name="foto" class="form-control" id="foto">
                 </div>
-                <x-input type="number" attr="nip" label="NIP" value="{{ $dosen->nip }}" />
+                <div class="form-group">
+                        <label for="nip">NIP</label>
+                        <input type="text" id="nip" value="{{ $dosen->nip }}" class="form-control" name="nip">
+                </div>
                 <x-input type="text" attr="nama" label="Nama" value="{{ $dosen->nama }}" />
                 <x-input type="text" attr="email" label="Email" value="{{ $dosen->email }}" />
                 <x-select2 :isSelected="$dosen->matkuls" label="Mengajar Matakuliah" attr="matkul" :dataArray="$matkuls"

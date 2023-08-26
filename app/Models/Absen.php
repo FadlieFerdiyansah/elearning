@@ -11,7 +11,7 @@ class Absen extends Model
 {
     use HasFactory, TimeUTC8;
 
-    protected $fillable = [ 'parent','mahasiswa_id', 'status', 'pertemuan', 'rangkuman', 'berita_acara', 'jadwal_id'];
+    protected $fillable = [ 'parent','mahasiswa_id', 'status', 'pertemuan', 'jadwal_id', 'kd_matkul'];
     // protected $with = ['jadwal'];
 
     public function mahasiswa()

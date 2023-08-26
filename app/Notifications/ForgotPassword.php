@@ -24,8 +24,8 @@ class ForgotPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->subject('Permintaan Riset Password')
-        ->greeting('Halo, '.$notifiable->nama)
-        ->action('Riset Password', url('/riset-password?token='.$this->token));
+            ->subject('Permintaan Reset Password')
+            ->greeting('Halo, ' . $notifiable->nama)
+            ->action('Reset Password', url('/riset-password?token=' . $this->token));
     }
 }

@@ -62,7 +62,9 @@
                                         <td style="background:{{ $key % 2 == 0 ? '#6FB2D2' : '' }}; text-align: center; font-size: 18px; font-weight: bold; border: 1px solid; border-color: #3A5BA0">
                                           @foreach($mhs->tugas as $tugas)
                                               @if ($tugas->pertemuan == $i && $kls->pivot->matkul_id == $tugas->jadwal->matkul_id)
-                                                {{ $tugas->nilai->nilai ?? 'Belum dinilai' }}
+                                                @once
+                                                {{ round($mhs->tugas->where('pertemuan', 1)->sum('nilai.nilai') / $mhs->tugas->where('pertemuan', 1)->count()) ?? 'Belum dinilai' }}
+                                                @endonce
                                               @endif
                                           @endforeach
                                         </td>

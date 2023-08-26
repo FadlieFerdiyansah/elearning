@@ -23,7 +23,7 @@
                                     <label for="password" class="control-label">Password</label>
                                     <div class="float-right">
                                         <a href="{{ route('forgot.password') }}" class="text-small">
-                                            Forgot password?
+                                            Lupa Password?
                                         </a>
                                     </div>
                                 </div>

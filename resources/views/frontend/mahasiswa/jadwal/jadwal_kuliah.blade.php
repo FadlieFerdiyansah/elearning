@@ -57,13 +57,8 @@
 					</div>
 				</div>
 				<div class="pricing-cta">
-					@if (waktuSekarang() >= $jadwal->jam_masuk && waktuSekarang() <= $jadwal->jam_keluar && $jadwal->hari == hariIndo())
 					<a href="{{ route('mahasiswa.masukKelas',Crypt::encrypt($jadwal->id)) }}">Masuk <i
 							class="fas fa-arrow-right"></i></a>
-					@else
-					<a href="#" class="masuk">Masuk <i
-						class="fas fa-arrow-right"></i></a>
-					@endif
 					
 				</div>
 			</div>

@@ -1,18 +1,15 @@
-<x-app-layouts>
+<x-app-layouts title="Materi">
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('materis.create', encrypt($jadwal->id)) }}" class="btn btn-sm btn-dark"><i
-                    class="fas fa-plus"></i> Tambah materi</a>
+            <a href="{{ route('materis.create', encrypt($jadwal->id)) }}" class="btn btn-sm btn-dark"><i class="fas fa-plus"></i> Tambah materi</a>
         </div>
         <div class="card-body">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="materi-tab" data-toggle="tab" href="#materi" role="tab"
-                        aria-controls="materi" aria-selected="true">Materi Tambahan</a>
+                    <a class="nav-link active" id="materi-tab" data-toggle="tab" href="#materi" role="tab" aria-controls="materi" aria-selected="true">Materi Tambahan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="vidio-tab" data-toggle="tab" href="#vidio" role="tab" aria-controls="vidio"
-                        aria-selected="false">Video Pembelajaran</a>
+                    <a class="nav-link" id="vidio-tab" data-toggle="tab" href="#vidio" role="tab" aria-controls="vidio" aria-selected="false">Video Pembelajaran</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link" id="slide-tab" data-toggle="tab" href="#slide" role="tab" aria-controls="slide"
@@ -30,7 +27,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Judul</th>
                                     <th>Pertemuan</th>
                                     <th>Deskripsi</th>
@@ -52,25 +49,16 @@
                                     <td>{{ $materi->created_at }}</td>
                                     <td>
                                         <div class="dropdown d-inline">
-                                            <button class="btn btn-dark dropdown-toggle" type="button"
-                                                id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
+                                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Action
                                             </button>
-                                            <div class="dropdown-menu" x-placement="bottom-start"
-                                                style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item has-icon"
-                                                    href="{{ asset("/storage/$materi->file_or_link") }}" download><i
-                                                        class="fas fa-download"></i> Download</a>
-                                                <a class="dropdown-item has-icon"
-                                                    href="{{ route('materis.edit', encrypt($materi->id)) }}"><i
-                                                        class="fas fa-edit"></i> Edit</a>
-                                                <form action="{{ route('materis.destroy', $materi->id) }}" method="post"
-                                                    style="font-size: 13px;">
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                <a class="dropdown-item has-icon" href="{{ asset("/storage/$materi->file_or_link") }}" download><i class="fas fa-download"></i> Download</a>
+                                                <a class="dropdown-item has-icon" href="{{ route('materis.edit', encrypt($materi->id)) }}"><i class="fas fa-edit"></i> Edit</a>
+                                                <form action="{{ route('materis.destroy', $materi->id) }}" method="post" style="font-size: 13px;">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="dropdown-item has-icon btn-sm"><i
-                                                            class="fas fa-trash"></i>
+                                                    <button type="submit" class="dropdown-item has-icon btn-sm"><i class="fas fa-trash"></i>
                                                         Delete</button>
                                                 </form>
                                             </div>
@@ -99,24 +87,17 @@
                                     <h4>{{ $materi->judul }}</h4>
                                     <div class="card-header-action">
                                         <div class="dropdown d-inline">
-                                            <button class="btn btn-dark dropdown-toggle" type="button"
-                                                id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
+                                            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Action
                                             </button>
-                                            <div class="dropdown-menu" x-placement="bottom-start"
-                                                style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item has-icon"
-                                                    href="{{ route('materis.edit', encrypt($materi->id)) }}"><i
-                                                        class="fas fa-edit"></i> Edit</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                <a class="dropdown-item has-icon" href="{{ route('materis.edit', encrypt($materi->id)) }}"><i class="fas fa-edit"></i> Edit</a>
                                                 {{-- <a class="dropdown-item has-icon" href="#"><i class="fas fa-trash"></i>
                                                         Delete</a> --}}
-                                                <form action="{{ route('materis.destroy', $materi->id) }}" method="post"
-                                                    style="font-size: 13px;">
+                                                <form action="{{ route('materis.destroy', $materi->id) }}" method="post" style="font-size: 13px;">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="dropdown-item has-icon btn-sm"><i
-                                                            class="fas fa-trash"></i>
+                                                    <button type="submit" class="dropdown-item has-icon btn-sm"><i class="fas fa-trash"></i>
                                                         Delete</button>
                                                 </form>
                                             </div>
@@ -130,9 +111,7 @@
                                     </div>
                                     <div class="chocolat-parent" style="margin: 0 -25px;">
                                         <div class="mb-3">
-                                            <iframe frameborder="0" allowfullscreen="1" title="YouTube video player"
-                                                class="w-100" height="200" style="object-fit: cover;"
-                                                src="https://www.youtube.com/embed/{{ $materi->file_or_link }}"></iframe>
+                                            <iframe frameborder="0" allowfullscreen="1" title="YouTube video player" class="w-100" height="200" style="object-fit: cover;" src="https://www.youtube.com/embed/{{ $materi->file_or_link }}"></iframe>
                                         </div>
                                     </div>
                                     <p>{{ Str::limit($materi->deskripsi, 200) }}</p>

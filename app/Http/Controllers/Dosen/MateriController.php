@@ -25,8 +25,12 @@ class MateriController extends Controller
     public function store(MateriRequest $request)
     {
         $materi = $request->all();
-        
+
         if ($request->tipe == 'pdf') {
+            $fileSizeLimit = 100 * 1024;
+            if ($request->file('file_or_link')->getSize() > $fileSizeLimit) {
+                return back()->with('error', 'File tidak boleh lebih dari 100 MB');
+            }
             $fileName = time() . '.' . $request->file('file_or_link')->extension();
             $materi['file_or_link'] = $request->file('file_or_link')->storeAs("materials", $fileName);
         }
@@ -39,7 +43,7 @@ class MateriController extends Controller
     public function edit($materiId)
     {
         $materi = Materi::findOrFail(decrypt($materiId));
-        
+
         return view('frontend.dosen.materi.edit', compact('materi'));
     }
 
@@ -52,17 +56,17 @@ class MateriController extends Controller
             Storage::delete($materi->file_or_link);
             $fileName = time() . '.' . $request->file('file_or_link')->extension();
             $file = $request->file('file_or_link')->storeAs("materials", $fileName);
-        }else{
+        } else {
             $file = $materi->file_or_link;
         }
 
         if ($request->tipe == 'youtube') {
             Storage::delete($materi->file_or_link);
             $attr['file_or_link'] = $request->file_or_link;
-        }else{
+        } else {
             $attr['file_or_link'] = $file;
         }
-        
+
         $materi->update($attr);
 
         return back()->with('success', 'Berhasil mengedit materi');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Dosen;
+
 use Illuminate\Routing\Route;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,17 +26,17 @@ class TugasRequest extends FormRequest
     public function rules()
     {
         info($this);
-        if(request('tipe') == 'file'){
+        if (request('tipe') == 'file') {
             if (request()->is("tugas/$this->id/edit")) {
                 if (request('file_or_link')) {
-                    $condition = 'file|mimes:jpg,jpeg,png,bmp,gif,svg,webp,pdf,docx,xls,xlsx,zip,rar,ppt,pptx,mp4|max:100000'; 
-                }else{
+                    $condition = 'file|mimes:jpg,jpeg,png,bmp,gif,svg,webp,pdf,docx,xls,xlsx,zip,rar,ppt,pptx,mp4,doc,csv|max:100000';
+                } else {
                     $condition = '';
                 }
-            }else{
-                $condition = 'file|mimes:jpg,jpeg,png,bmp,gif,svg,webp,pdf,docx,xls,xlsx,zip,rar,ppt,pptx,mp4|max:100000';
+            } else {
+                $condition = 'file|mimes:jpg,jpeg,png,bmp,gif,svg,webp,pdf,docx,xls,xlsx,zip,rar,ppt,pptx,mp4,doc,csv|max:100000';
             }
-        }else{
+        } else {
             $condition = 'required';
         }
 

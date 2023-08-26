@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\{Auth, Storage};
 
 class KelasController extends Controller
 {
-    public function waktuSekarang()
-    {
-        $jakartaTime = Carbon::now('Asia/Jakarta');
-        $utcPlus8Time = $jakartaTime->copy()->addHour();
-        return $utcPlus8Time->format('Y-m-d H:i');
-    }
+    // public function waktuSekarang()
+    // {
+    //     $jakartaTime = Carbon::now('Asia/Jakarta');
+    //     $utcPlus8Time = $jakartaTime->copy()->addHour();
+    //     return $utcPlus8Time->format('Y-m-d H:i');
+    // }
 
     public function masuk($id)
     {
@@ -48,7 +48,7 @@ class KelasController extends Controller
         //Jadi tidak bisa absen kalau belum waktu nya dan juga berlaku untuk jam keluar, jika lebih dari waktu
         //Jam Keluar ya sudah tidak bisa absen lagi
         if (hariIndo() == $jadwal->hari) {
-            $waktuAbsen = $this->waktuSekarang() >= $jadwal->jam_masuk && $this->waktuSekarang() <= $jadwal->jam_keluar;
+            $waktuAbsen = formatedWaktuSekarang() >= $jadwal->jam_masuk && formatedWaktuSekarang() <= $jadwal->jam_keluar;
         } else {
             $waktuAbsen = false;
         }

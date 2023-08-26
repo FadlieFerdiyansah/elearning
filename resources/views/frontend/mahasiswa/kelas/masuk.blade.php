@@ -94,7 +94,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>No</th>
                                         <th>Status</th>
                                         <th>Matakuliah</th>
                                         <th>Pertemuan</th>

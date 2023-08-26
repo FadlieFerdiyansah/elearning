@@ -28,7 +28,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Kd Matkul</th>
                                     <th>Judul</th>
                                     <th>Pertemuan</th>
@@ -85,7 +85,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Kd Matkul</th>
                                     <th>Judul</th>
                                     <th>Link/File Tugas</th>

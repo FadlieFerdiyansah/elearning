@@ -23,7 +23,7 @@
                         <table class="table table-hover" id="table-1">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>KODE MATKUL</th>
                                     <th>KELAS</th>
                                     <th>JUDUL</th>

@@ -3,12 +3,10 @@
         <div class="card-body">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="materi-tab" data-toggle="tab" href="#materi" role="tab"
-                        aria-controls="materi" aria-selected="true">Materi Tambahan</a>
+                    <a class="nav-link active" id="materi-tab" data-toggle="tab" href="#materi" role="tab" aria-controls="materi" aria-selected="true">Materi Tambahan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="vidio-tab" data-toggle="tab" href="#vidio" role="tab" aria-controls="vidio"
-                        aria-selected="false">Video Pembelajaran</a>
+                    <a class="nav-link" id="vidio-tab" data-toggle="tab" href="#vidio" role="tab" aria-controls="vidio" aria-selected="false">Video Pembelajaran</a>
                 </li>
 
             </ul>
@@ -23,7 +21,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Judul</th>
                                     <th>Pertemuan</th>
                                     <th>Deskripsi</th>
@@ -43,9 +41,7 @@
                                         {{ $materi->deskripsi }}
                                     </td>
                                     <td>
-                                        <a class="dropdown-item has-icon"
-                                            href="{{ asset("/storage/$materi->file_or_link") }}" download><i
-                                                class="fas fa-download"></i> Download</a>
+                                        <a class="dropdown-item has-icon" href="{{ asset("/storage/$materi->file_or_link") }}" download><i class="fas fa-download"></i> Download</a>
                                     </td>
                                     <td>{{ $materi->created_at }}</td>
                                 </tr>
@@ -77,9 +73,7 @@
                                     </div>
                                     <div class="chocolat-parent" style="margin: 0 -25px;">
                                         <div class="mb-3">
-                                            <iframe frameborder="0" allowfullscreen="1" title="YouTube video player"
-                                                class="w-100" height="200" style="object-fit: cover;"
-                                                src="https://www.youtube.com/embed/{{ $materi->file_or_link }}"></iframe>
+                                            <iframe frameborder="0" allowfullscreen="1" title="YouTube video player" class="w-100" height="200" style="object-fit: cover;" src="https://www.youtube.com/embed/{{ $materi->file_or_link }}"></iframe>
                                         </div>
                                     </div>
                                     <p>{{ Str::limit($materi->deskripsi, 200) }}</p>

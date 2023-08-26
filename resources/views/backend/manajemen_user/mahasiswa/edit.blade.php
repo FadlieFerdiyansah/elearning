@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nim">NIM</label>
-                        <input type="text" id="nim" value="{{ $mahasiswa->nim }}" class="form-control" name="nim" disabled>
+                        <input type="text" id="nim" value="{{ $mahasiswa->nim }}" class="form-control" name="nim">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>

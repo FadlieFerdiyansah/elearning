@@ -12,8 +12,8 @@
                             <th>Kelas</th>
                             <th>Matkul</th>
                             <th>Pertemuan</th>
-                            <th>Berita Acara</th>
-                            <th>Rangkuman</th>
+                            <!-- <th>Berita Acara</th> -->
+                            <!-- <th>Rangkuman</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -25,8 +25,8 @@
                         <td>{{ $absen->jadwal->kelas->kd_kelas }}</td>
                         <td>{{ $absen->jadwal->matkul->nm_matkul }}</td>
                         <td>{{ $absen->pertemuan }}</td>
-                        <td>{{ $absen->berita_acara }}</td>
-                        <td>{{ $absen->rangkuman }}</td>
+                        <!-- <td>{{ $absen->berita_acara }}</td> -->
+                        <!-- <td>{{ $absen->rangkuman }}</td> -->
                         <td>
                             <form action="{{ route('absensi.delete', Crypt::encryptString($absen->id)) }}" method="post" class="float-left mr-2">
                                 @csrf

@@ -20,24 +20,6 @@
                     </div>
                     @enderror
                 </div>
-
-                {{-- <div class="form-group">
-                    <label for="rangkuman">Rangkuman</label>
-                    <textarea name="rangkuman" id="rangkuman" class="form-control"></textarea>
-                    <code>
-                        Note: Boleh di isi diakhir pelajaran
-                    </code>
-                </div>
-
-                <div class="form-group">
-                    <label for="berita_acara">Berita Acara</label>
-                    <textarea name="berita_acara" id="berita_acara" class="form-control"></textarea>
-                    <code>
-                        Note: Boleh di isi diakhir pelajaran
-                    </code>
-                </div> --}}
-
-
                 <div class="form-group">
                     <x-button>Simpan</x-button>
                 </div>

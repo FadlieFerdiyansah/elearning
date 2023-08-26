@@ -14,7 +14,7 @@ class AbsenController extends Controller
         $absensi = Absen::with('jadwal')->where([
             ['dosen_id', Auth::Id()],
             ['parent', 0]
-        ])->whereDate('created_at', Carbon::today())->latest()->get(['id','dosen_id','jadwal_id','pertemuan','berita_acara','rangkuman']);
+        ])->whereDate('created_at', Carbon::today())->latest()->get(['id','dosen_id','jadwal_id','pertemuan']);
 
         return view('frontend.dosen.absensi.index',compact('absensi'));
     }
@@ -34,6 +34,7 @@ class AbsenController extends Controller
     public function store()
     {
         $jadwal_id = decrypt(request('jadwal'));
+        $jadwal = Jadwal::findOrFail($jadwal_id);
         
         request()->validate([
             'pertemuan' => 'required'
@@ -41,9 +42,8 @@ class AbsenController extends Controller
 
         $absen = Auth::user()->absens()->create([
             'jadwal_id' => $jadwal_id,
+            'kd_matkul' => $jadwal->matkul->kd_matkul,
             'pertemuan' => request('pertemuan'),
-            'rangkuman' => request('rangkuman'),
-            'berita_acara' => request('berita_acara')
         ]);
         
         $mahasiswas = Mahasiswa::where('kelas_id', request('kelas'))->get();
@@ -51,6 +51,7 @@ class AbsenController extends Controller
         foreach ($mahasiswas as $mahasiswa) {
             $mahasiswa->absens()->create([
                 'jadwal_id' => $jadwal_id,
+                'kd_matkul' => $jadwal->matkul->kd_matkul,
                 'parent' => $absen->id,
                 'mahasiswa_id' => $mahasiswa->id,
                 'pertemuan' => $absen->pertemuan,
@@ -74,8 +75,6 @@ class AbsenController extends Controller
         
         $absen->update([
             'pertemuan' => request('pertemuan'),
-            'rangkuman' => request('rangkuman'),
-            'berita_acara' => request('berita_acara')
         ]);
 
         return redirect(route('absensi.index'));

@@ -30,12 +30,6 @@
     </ul>
 </ul>
 
-<hr>
-    <h1>Dukungan ❤️</h1>
-    <p>Kamu bisa dukung saya dengan cara memberikan <b>star ⭐ / fork 🖇️</b> pada project ini</p>
-    <p>Atau kamu bisa donate melalui <a href="https://saweria.co/fadlieferdiyansah" target="_blank">Saweria</a></p>
-    <p>Terimakasih atas dukungannya 😊</p>
-<hr>
 
 <h1>Cara instalasi project ⚙️ </h1>
 <h4> Zip </h4>

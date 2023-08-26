@@ -19,10 +19,9 @@ Route::middleware('auth:admin')->group(function () {
 
         Route::delete('admins', [AdminController::class, 'delete_checkbox']);
         Route::resource('admins', AdminController::class);
-
     });
 
-    
+
     // ** KELAS **
     Route::resource('kelas', KelasController::class)->except('show');
 

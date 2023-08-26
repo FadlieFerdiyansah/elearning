@@ -51,7 +51,7 @@
                     <div class="col mb-4 mb-lg-0 text-center">
                         <i data-feather="user-x" style="width: 100px; height: 40px"></i>
                         <div class="mt-2 font-weight-bold mb-1">Sakit</div>
-                        <h6 class ="badge badge-secondary">{{ $mahasiswaSakit }}</h6>
+                        <h6 class="badge badge-secondary">{{ $mahasiswaSakit }}</h6>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Mahasiswa</th>
                                     <th>Keterangan</th>
                                 </tr>
@@ -84,8 +84,7 @@
                                         <td>{{ $i + 1 }}</td>
                                         <td>
                                             <li class="media">
-                                                <img alt="image" class="mr-3 rounded-circle" width="50"
-                                                    src="{{ $mhs->foto == 'default.png' ?  $mhs->pictureDefault : $mhs->picture }}">
+                                                <img alt="image" class="mr-3 rounded-circle" width="50" src="{{ $mhs->foto == 'default.png' ?  $mhs->pictureDefault : $mhs->picture }}">
                                                 <div class="media-body">
                                                     <div class="media-title">{{ $mhs->nama }}</div>
                                                     <div class="text-job text-muted">{{ $mhs->nim }}</div>
@@ -127,9 +126,8 @@
 
                                         @once
                                         {{-- @if ($absen) --}}
-                                        <button type="submit" class="btn btn-primary btn-sm mb-3"><i
-                                                class="fas fa-save"></i> Simpan Absen</button>
-                                                <code class="ml-3">Note : Klik Simpan Absen jika ada perubahan Absensi dibawah</code>
+                                        <button type="submit" class="btn btn-primary btn-sm mb-3"><i class="fas fa-save"></i> Simpan Absen</button>
+                                        <code class="ml-3">Note : Klik Simpan Absen jika ada perubahan Absensi di bawah</code>
                                         {{-- @else
                                         <button type="button" class="btn btn-sm btn-warning mb-3">Silahkan create absen
                                             terlebih dahulu</button> --}}

@@ -31,8 +31,12 @@ class TugasController extends Controller
         $attr = $request->validated();
         $attr['jadwal_id'] = $jadwalId;
         $attr['matkul_id'] = $jadwal->matkul_id;
-        
+
         if ($request->tipe == 'file') {
+            $fileSizeLimit = 100 * 1024;
+            if ($request->file('file_or_link')->getSize() > $fileSizeLimit) {
+                return back()->with('error', 'File tidak boleh lebih dari 100 MB');
+            }
             $file = $request->file('file_or_link')->store('bahan_ajar');
             $attr['file_or_link'] = $file;
         } else {
@@ -54,11 +58,11 @@ class TugasController extends Controller
         $attr = $request->validated();
 
         if ($request->tipe == 'file') {
-            if(request('file_or_link')){
+            if (request('file_or_link')) {
                 Storage::delete($tugas->file_or_link);
                 $file = $request->file('file_or_link')->store('bahan_ajar');
                 $attr['file_or_link'] = $file;
-            }else{
+            } else {
                 $attr['file_or_link'] = $tugas->file_or_link;
             }
         } else {
@@ -75,13 +79,13 @@ class TugasController extends Controller
     {
         $tugasMahasiswa = Tugas::with('mahasiswa')->where('parent', '!=', 0)->whereParent($tugas->id)->latest()->paginate(10);
         $mahasiswa = Mahasiswa::where('kelas_id', $tugas->kelas->id)->get();
-        return view('frontend.dosen.tugas.show', compact('tugas', 'tugasMahasiswa','mahasiswa'));
+        return view('frontend.dosen.tugas.show', compact('tugas', 'tugasMahasiswa', 'mahasiswa'));
     }
 
     public function destroy(Tugas $tugas)
     {
         $tugasMahasiswa = Tugas::whereParent($tugas->id)->get();
-        
+
         if ($tugas->tipe == "file") {
             Storage::delete($tugas->file_or_link);
         }

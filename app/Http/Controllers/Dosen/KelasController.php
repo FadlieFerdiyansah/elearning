@@ -16,7 +16,7 @@ class KelasController extends Controller
         $jadwal = Jadwal::where('id', decrypt($jadwalId))->first();
 
         // Jika waktu pada jadwal sesuai maka jalankan code dibawah
-        if (waktuSekarang() >= $jadwal->jam_masuk && waktuSekarang() <= $jadwal->jam_keluar) {
+        if (formatedWaktuSekarang() >= $jadwal->jam_masuk && formatedWaktuSekarang() <= $jadwal->jam_keluar) {
 
             // Code dibawah untuk menampilkan seluruh mahasiswa yang berada di kelas yang sama dan dijadwal yang sama
             // Beserta menampilkan  absensi hari ini
