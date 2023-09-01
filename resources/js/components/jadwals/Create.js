@@ -34,7 +34,13 @@ function Create(props) {
         e.preventDefault();
         try {
             let response = await axios.post(props.endpoint, request)
-            toast.success(response.data.message);
+            console.log("hit yak")
+            console.log(response)
+            if(response.data.status == false){
+                toast.error(response.data.message)
+            }else{
+                toast.success(response.data.message)
+            }
 
             setKelasId('')
             setDosenId('')

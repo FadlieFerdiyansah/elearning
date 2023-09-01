@@ -3,8 +3,8 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4>Tabel Prodi</h4>
-            <a href="{{ route('fakultas.create') }}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Tambah
-                Prodi</a>
+            {{-- <a href="{{ route('fakultas.create') }}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Tambah
+                Prodi</a> --}}
         </div>
         <div class="card-body">
             <x-alert />

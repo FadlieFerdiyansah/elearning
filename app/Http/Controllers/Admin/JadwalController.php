@@ -28,14 +28,35 @@ class JadwalController extends Controller
 
     public function store(JadwalRequest $request)
     {
+        // info(json_encode(request()->all()));
+        // {"kelas_id":"2","dosen_id":"1","matkul_id":"1","hari":"Sabtu","jam_masuk":"13:00","jam_keluar":"01:00"}
         // check if kelas dosen matkul same in 1 day and return back with error
-        $check = Jadwal::where('kelas_id', $request->kelas_id)
-            ->where('dosen_id', $request->dosen_id)
-            ->where('matkul_id', $request->matkul_id)
+        $check = Jadwal::
+        // where('kelas_id', $request->kelas_id)
+            where('dosen_id', $request->dosen_id)
+            // ->where('matkul_id', $request->matkul_id)
             ->where('hari', $request->hari)
-            ->first();
+            // ->where('jam_masuk', '>=', $request->jam_masuk)
+            // ->where('jam_keluar', '<=', $request->jam_keluar)
+            ->get();
+            
+            $requestedJamMasuk = $request->jam_masuk;
+            $requestedJamKeluar = $request->jam_keluar;
         if ($check) {
-            return response()->json(['message' => "Jadwal sudah ada dihari $request->hari"]);
+            // && $request->jam_masuk <= $check->jam_keluar && $request->jam_keluar <= $check->jam_keluar
+            // info("request masuk $request->jam_masuk > $check->jam_masuk && request keluar $request->jam_keluar < $check->jam_keluar");
+            foreach ($check as $chk) {
+                $existingJamMasuk = $chk->jam_masuk;
+                $existingJamKeluar = $chk->jam_keluar;
+                if(
+                    ($requestedJamMasuk >= $existingJamMasuk && $requestedJamMasuk < $existingJamKeluar) ||
+                    ($requestedJamKeluar > $existingJamMasuk && $requestedJamKeluar <= $existingJamKeluar) ||
+                    ($requestedJamMasuk <= $existingJamMasuk && $requestedJamKeluar >= $existingJamKeluar)
+                    ){
+                    return response()->json(['message' => "Jadwal untuk di jam $request->jam_masuk - $request->jam_keluar sudah ada.", 'status' => false]);
+                }
+            }
+            // return response()->json(['message' => "Jadwal sudah ada dihari $request->hari, dan di jam $request->jam_masuk - $request->jam_keluar"]);
         }
 
         Jadwal::create($request->all());

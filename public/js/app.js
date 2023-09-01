@@ -2262,7 +2262,15 @@ function Create(props) {
 
             case 4:
               response = _context.sent;
-              react_hot_toast__WEBPACK_IMPORTED_MODULE_5__["default"].success(response.data.message);
+              console.log("hit yak");
+              console.log(response);
+
+              if (response.data.status == false) {
+                react_hot_toast__WEBPACK_IMPORTED_MODULE_5__["default"].error(response.data.message);
+              } else {
+                react_hot_toast__WEBPACK_IMPORTED_MODULE_5__["default"].success(response.data.message);
+              }
+
               setKelasId('');
               setDosenId('');
               setMatkulId('');
@@ -2270,20 +2278,20 @@ function Create(props) {
               setJamMasuk('');
               setJamKeluar('');
               setErrors(['']);
-              _context.next = 18;
+              _context.next = 20;
               break;
 
-            case 15:
-              _context.prev = 15;
+            case 17:
+              _context.prev = 17;
               _context.t0 = _context["catch"](1);
               setErrors(_context.t0.response.data.errors);
 
-            case 18:
+            case 20:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 15]]);
+      }, _callee, null, [[1, 17]]);
     }));
 
     return function store(_x) {

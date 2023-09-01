@@ -22,20 +22,26 @@ class AbsenController extends Controller
     public function create($jadwal_id)
     {
         $jadwal = Jadwal::findOrFail(decrypt($jadwal_id));
+        $pertemuanTerakhir = $jadwal->absens()->where('parent', 0)->latest()->get();
         
         $kelasActive = Auth::guard('dosen')->user()->jadwals()->where('hari',hariIndo())->get();
         $absen = Absen::where('dosen_id', Auth::Id())
                 ->where('jadwal_id', $jadwal->id)
                 ->whereDate('created_at', now())
                 ->first();
-        return view('frontend.dosen.absensi.create',compact('kelasActive','jadwal', 'absen'));
+
+        $semuaPertemuan = $jadwal->absens()->where('parent', 0)->orderBy('pertemuan')->get();
+        return view('frontend.dosen.absensi.create',compact('kelasActive','jadwal', 'absen', 'semuaPertemuan'));
     }
     
     public function store()
     {
         $jadwal_id = decrypt(request('jadwal'));
         $jadwal = Jadwal::findOrFail($jadwal_id);
-        
+        $pertemuanSudahDibuat = $jadwal->absens()->where('parent', 0)->where('pertemuan', request('pertemuan'))->orderBy('pertemuan')->first();
+        if($pertemuanSudahDibuat){
+            return back()->with('error', 'Pertemuan ' . request('pertemuan') . ' sudah pernah dibuat.');
+        }
         request()->validate([
             'pertemuan' => 'required'
         ]);

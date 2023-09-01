@@ -63,7 +63,10 @@
                                           @foreach($mhs->tugas as $tugas)
                                               @if ($tugas->pertemuan == $i && $kls->pivot->matkul_id == $tugas->jadwal->matkul_id)
                                                 @once
-                                                {{ round($mhs->tugas->where('pertemuan', 1)->sum('nilai.nilai') / $mhs->tugas->where('pertemuan', 1)->count()) ?? 'Belum dinilai' }}
+                                                {{ !$mhs->tugas->isEmpty()
+                                                    ? round($mhs->tugas->where('pertemuan', $i)->sum('nilai.nilai') / $mhs->tugas->where('pertemuan', $i)->count())
+                                                    : 'Belum dinilai' 
+                                                }}
                                                 @endonce
                                               @endif
                                           @endforeach
