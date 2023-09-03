@@ -29,7 +29,7 @@ class ExportNilaiController extends Controller
                 $formatMhs[$i]["p$j"] = '-';
                 if($mhs->tugas->where('pertemuan', $j)->count() > 0){
                     // $formatMhs[$i]["p$j"] = $mhs->tugas->where('pertemuan', $j)->first()->nilai->nilai ?? '-';
-                    $formatMhs[$i]["p$j"] = $mhs->tugas->where('pertemuan', $j)->first() ? round($mhs->tugas->where('pertemuan', 1)->sum('nilai.nilai') / $mhs->tugas->where('pertemuan', 1)->count()): '-';
+                    $formatMhs[$i]["p$j"] = $mhs->tugas->where('pertemuan', $j)->first() ? round($mhs->tugas->where('pertemuan', $j)->sum('nilai.nilai') / $mhs->tugas->where('pertemuan', $j)->count()): '-';
                 }
             }
         }
